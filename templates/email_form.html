@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+		width: 60%;
+        
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Email Form</h2>
+    <form id="emailForm">
+        <label for="fromEmail">From Email:</label>
+        <input type="email" id="fromEmail" name="fromEmail" required>
+
+        <label for="toEmail">To Email(s):</label>
+        <input type="email" id="toEmail" name="toEmail" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <label for="emailBodyTitle">Email Body Title:</label>
+        <input type="text" id="emailBodyTitle" name="emailBodyTitle" required>
+
+        <label for="emailBody">Email Body:</label>
+        <textarea id="emailBody" name="emailBody" rows="6" required></textarea>
+
+        <input type="submit" value="Send Email">
+    </form>
+
+   
+</div>
+
+<script>
+    document.getElementById("emailForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Fetch data from the form
+        const formData = new FormData(event.target);
+        const formDataJSON = {};
+        formData.forEach(function(value, key) {
+            formDataJSON[key] = value;
+        });
+
+        // Send data to backend API (You need to replace 'YOUR_BACKEND_API_URL' with your actual API URL)
+        fetch('http://127.0.0.1:5000', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formDataJSON)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            alert('Email sent successfully!');
+            // Optionally, you can redirect to a success page or clear the form here
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to send email. Please try again later.');
+        });
+    });
+</script>
+
+</body>
+</html>
