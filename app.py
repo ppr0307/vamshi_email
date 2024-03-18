@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 # Flask-Mail configuration
-app.config['MAIL_SERVER'] = 'mail.ouc.local'
+app.config['MAIL_SERVER'] = 'mail.abc.local'
 app.config['MAIL_PORT'] = 25
 app.config['MAIL_USE_TLS'] = True
 # app.config['MAIL_USERNAME'] = 'your_email@example.com'
