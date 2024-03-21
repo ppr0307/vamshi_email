@@ -1,120 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Form</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-		width: 60%;
-        
-        margin: 50px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    label {
-        font-weight: bold;
-    }
-    input[type="text"],
-    input[type="email"],
-    textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 20px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-    input[type="submit"] {
-        background-color: #4caf50;
-        color: #fff;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    input[type="submit"]:hover {
-        background-color: #45a049;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 60%;
+
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Email Form</h2>
-    <form id="emailForm">
-        <label for="fromEmail">From Email:</label>
-        <input type="email" id="fromEmail" name="fromEmail" required>
+    <div class="container">
+        <h2>Email Form</h2>
+        <form id="emailForm">
+            <label for="fromEmail">From Email:</label>
+            <input type="email" id="fromEmail" name="fromEmail" required>
 
-        <label for="toEmail">To Email(s):</label>
-        <input type="email" id="toEmail" name="toEmail" required>
+            <label for="toEmail">To Email(s):</label>
+            <input type="email" id="toEmail" name="toEmail" required>
 
-        <label for="subject">Subject:</label>
-        <input type="text" id="subject" name="subject" required>
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
 
-        <label for="emailBodyTitle">Email Body Title:</label>
-        <input type="text" id="emailBodyTitle" name="emailBodyTitle" required>
+            <label for="emailBodyTitle">Email Body Title:</label>
+            <input type="text" id="emailBodyTitle" name="emailBodyTitle" required>
 
-        <label for="releaseTag">Release Tag:</label>
-        <input type="text" id="releaseTag" name="releaseTag" required>
+            <label for="baselineUTC">Baseline UTC:</label>
+            <input type="text" id="baselineUTC" name="baselineUTC" required>
+            <label for="previousTag">Previous Tag:</label>
+            <input type="text" id="previousTag" name="previousTag" required>
 
-        <label for="releaseNotes">Release Notes:</label>
-        <textarea id="releaseNotes" name="releaseNotes" rows="6" required></textarea>
+            <label for="fwBugFixes">Total FW Bug Fixes [PPR]:</label>
+            <textarea id="fwBugFixes" name="fwBugFixes" rows="2" required></textarea>
 
-        <input type="submit" value="Send Email">
-    </form>
+            <label for="keyFeatures">Key Features [PPR]:</label>
+            <textarea id="keyFeatures" name="keyFeatures" rows="2" required></textarea>
 
-   
-</div>
+            <label for="performanceResults">Overall Performance Regression P/F:</label>
+            <textarea id="performanceResults" name="performanceResults" rows="2" required></textarea>
 
-<script>
-    document.getElementById("emailForm").addEventListener("submit", function(event) {
-        event.preventDefault();
+            <label for="perfIssues">PerfIssues:</label>
+            <textarea id="perfIssues" name="perfIssues" rows="2" required></textarea>
 
-        // Fetch data from the form
-        const formData = new FormData(event.target);
-        const formDataJSON = {};
-        formData.forEach(function(value, key) {
-            formDataJSON[key] = value;
+            <label for="stabilityResults">Stability Test Results:</label>
+            <textarea id="stabilityResults" name="stabilityResults" rows="2" required></textarea>
+
+            <label for="cvPerfReport">CV Perf Weekly Report:</label>
+            <input type="text" id="cvPerfReport" name="cvPerfReport" required>
+
+            <label for="cvPerfDashboard">CV Performance Campaign Dashboard:</label>
+            <input type="text" id="cvPerfDashboard" name="cvPerfDashboard" required>
+            <label for="performanceLive">CV Performance & Power CI Live:</label>
+            <input type="text" id="performanceLive" name="performanceLive" required>
+
+            <label for="functionalRegression">Overall Functional Regression P/F:</label>
+            <textarea id="functionalRegression" name="functionalRegression" rows="2" required></textarea>
+
+            <label for="releaseContent">Release Content:</label>
+            <textarea id="releaseContent" name="releaseContent" rows="2" required></textarea>
+
+            <input type="submit" value="Send Email">
+        </form>
+
+
+    </div>
+
+    <script>
+        document.getElementById("emailForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Fetch data from the form
+            const formData = new FormData(event.target);
+            const formDataJSON = {};
+            formData.forEach(function (value, key) {
+                formDataJSON[key] = value;
+            });
+
+            // Send data to backend API (You need to replace 'YOUR_BACKEND_API_URL' with your actual API URL)
+            fetch('http://127.0.0.1:5000', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formDataJSON)
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Email sent successfully!');
+                    // Optionally, you can redirect to a success page or clear the form here
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to send email. Please try again later.');
+                });
         });
-
-        // Send data to backend API (You need to replace 'YOUR_BACKEND_API_URL' with your actual API URL)
-        fetch('http://127.0.0.1:5000', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formDataJSON)
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-            alert('Email sent successfully!');
-            // Optionally, you can redirect to a success page or clear the form here
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to send email. Please try again later.');
-        });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

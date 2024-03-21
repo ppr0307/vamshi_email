@@ -59,75 +59,283 @@
   <!-- Container -->
   <!-- <div class="container"> -->
 
-    <!-- Relase Tag -->
-    <div class="table-container auto">
-      <table>
-        <!-- <caption style="font-size: medium;">Table : Release Tag</caption>  -->
-        <thead>
-          <tr>
-            <th>Release Tag</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{ data.email_form.release_tag }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- baselineUTC -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : baselineUTC</caption>  -->
+      <thead>
+        <tr>
+          <th>Release Tag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ data.email_form.baselineUTC }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- Relase Notes -->
-    <div class="table-container auto">
-      <table>
-        <!-- <caption style="font-size: medium;">Table : Release Notes</caption>  -->
-        <thead>
-          <tr>
-            <th>Release Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <p> {% for item in data.email_form.release_notes %}
-                <li>{{ item.line }}</li>
-                {% endfor %}
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <!-- previousTag -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : previousTag</caption>  -->
+      <thead>
+        <tr>
+          <th>Previous Tag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ data.email_form.previousTag }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <!-- First Table -->
-    <div class="table-container">
-      <table class="table table-sm">
-        <caption style="font-size: medium; text-align: left;">Table 1: Traffic Ticket Information</caption>
-        <thead>
-          <tr>
-            <!-- Ticket_ID,Date_Time,Location,Speed_Limit,Vehicle_Speed,Owner_Name,License_Plate -->
-            <th>Ticket_ID</th>
-            <th>Date_Time</th>
-            <th>Location</th>
-            <th>Speed_Limit</th>
-            <th>Vehicle_Speed</th>
-            <th>Owner_Name</th>
-            <th>License_Plate</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for entry in data.csv_rows %}
-          <tr>
-            <td>{{ entry.Ticket_ID }}</td>
-            <td>{{ entry.Date_Time }}</td>
-            <td>{{ entry.Location }}</td>
-            <td>{{ entry.Speed_Limit }}</td>
-            <td>{{ entry.Vehicle_Speed }}</td>
-            <td>{{ entry.Owner_Name }}</td>
-            <td>{{ entry.License_Plate }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+  <!-- fwBugFixes -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : fwBugFixes </caption>  -->
+      <thead>
+        <tr>
+          <th>fwBugFixes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.fwBugFixes %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- keyFeatures -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : keyFeatures </caption>  -->
+      <thead>
+        <tr>
+          <th>keyFeatures</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.keyFeatures %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- performanceResults -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : performanceResults </caption>  -->
+      <thead>
+        <tr>
+          <th>performanceResults</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.performanceResults %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- perfIssues -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : perfIssues </caption>  -->
+      <thead>
+        <tr>
+          <th>perfIssues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.perfIssues %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- stabilityResults -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : stabilityResults </caption>  -->
+      <thead>
+        <tr>
+          <th>stabilityResults</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.stabilityResults %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+ <!-- cvPerfReport -->
+ <div class="table-container auto">
+  <table>
+    <!-- <caption style="font-size: medium;">Table : cvPerfReport</caption>  -->
+    <thead>
+      <tr>
+        <th>cvPerfReport</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ data.email_form.cvPerfReport }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+ <!-- cvPerfDashboard -->
+ <div class="table-container auto">
+  <table>
+    <!-- <caption style="font-size: medium;">Table : cvPerfDashboard</caption>  -->
+    <thead>
+      <tr>
+        <th>cvPerfDashboard</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ data.email_form.cvPerfDashboard }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+ <!-- performanceLive -->
+ <div class="table-container auto">
+  <table>
+    <!-- <caption style="font-size: medium;">Table : performanceLive</caption>  -->
+    <thead>
+      <tr>
+        <th>performanceLive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ data.email_form.performanceLive }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> 
+
+  <!-- functionalRegression -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : functionalRegression </caption>  -->
+      <thead>
+        <tr>
+          <th>functionalRegression</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.functionalRegression %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- releaseContent -->
+  <div class="table-container auto">
+    <table>
+      <!-- <caption style="font-size: medium;">Table : releaseContent </caption>  -->
+      <thead>
+        <tr>
+          <th>releaseContent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <p> {% for item in data.email_form.releaseContent %}
+              <li>{{ item.line }}</li>
+              {% endfor %}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+
+
+
+
+  <!-- CSV Table -->
+  <!-- <div class="table-container">
+    <table class="table table-sm">
+      <caption style="font-size: medium; text-align: left;">Table 1: Traffic Ticket Information</caption>
+      <thead>
+        <tr>
+   
+          <th>Ticket_ID</th>
+          <th>Date_Time</th>
+          <th>Location</th>
+          <th>Speed_Limit</th>
+          <th>Vehicle_Speed</th>
+          <th>Owner_Name</th>
+          <th>License_Plate</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in data.csv_rows %}
+        <tr>
+          <td>{{ entry.Ticket_ID }}</td>
+          <td>{{ entry.Date_Time }}</td>
+          <td>{{ entry.Location }}</td>
+          <td>{{ entry.Speed_Limit }}</td>
+          <td>{{ entry.Vehicle_Speed }}</td>
+          <td>{{ entry.Owner_Name }}</td>
+          <td>{{ entry.License_Plate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div> -->
 </body>
+
 </html>
