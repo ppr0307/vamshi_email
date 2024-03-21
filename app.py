@@ -22,26 +22,47 @@ def email_form():
         to_email = request_fields['toEmail']
         subject = request_fields['subject']
         email_body_title = request_fields['emailBodyTitle']
-        email_body = request_fields['emailBody']
+        release_tag = request_fields['releaseTag']
+        release_notes = request_fields['releaseNotes']
+        release_notes_list = release_notes.splitlines()
 
+        # Final JSON output to render as html email body 
+        json_final = {}
+        
+        json_email = {}
+        json_email["from_email"] = from_email
+        json_email["to_email"] = to_email
+        json_email["subject"] = subject
+        json_email["email_body_title"] = email_body_title
+        json_email["release_tag"] = release_tag
+        json_release_notes = []
+        for i, r in enumerate(release_notes_list):
+            json_release_notes.append({"line": r})
+        json_email["release_notes"] = json_release_notes
+
+        # print(json_email)
+        # add json_email node to final json
+        json_final["email_form"] = json_email
+        
         # Read CSV file
         csv_file_path = 'data.csv'  # Replace 'data.csv' with the path to your CSV file
-        json_data = []
+        json_csv_data = []
 
         with open(csv_file_path, 'r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                json_data.append(row)
+                json_csv_data.append(row)
+        json_final["csv_rows"] = json_csv_data
 
         # Store JSON data into a variable and print it
-        # json_variable = json.dumps(json_data)
+        # json_variable = json.dumps(json_final)
         # print(json_variable)
 
         # Sending email
         try:
             msg = Message(subject=subject, sender=from_email, recipients=[to_email])
-            msg.body = f"{email_body_title}\n\n{email_body}"
-            msg.html = render_template("email.html",data=json_data)
+            # msg.body = f"{email_body_title}\n\n{email_body}"
+            msg.html = render_template("email.html",data=json_final)
             mail.send(msg)
             return {"status":"success"}
             flash('Email sent successfully!', 'success')

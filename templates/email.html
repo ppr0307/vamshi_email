@@ -1,104 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Template</title>
-<style>
-  /* Styling for the colored headline */
-  .headline {
-    color: white;
-    background-color: blue;
-    padding: 10px;
-    font-size: 24px;
-    text-align: center;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Template</title>
+  <style>
+    /* Styling for the colored headline */
+    .headline {
+      color: rgb(14, 13, 13);
+      background-color: rgb(62, 192, 231);
+      padding: 10px;
+      font-size: 24px;
+      text-align: center;
+    }
 
-  /* Styling for the tables */
-  .table-container {
-    margin-bottom: 20px;
-    width: 100%;
-    overflow-x: auto;
-  }
+    /* Styling for the tables */
+    .table-container {
+      margin-bottom: 20px;
+      width: 100%;
+      overflow-x: auto;
+    }
 
-  .table-container table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; /* Set all table columns to have the same width */
-  }
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      /* Set all table columns to have the same width */
+    }
 
-  .table-container th, .table-container td {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-    width: 33%; /* Equal width for all table columns */
-  }
+    .table-container th,
+    .table-container td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      width: 33%;
+      /* Equal width for all table columns */
+    }
 
-  .table-container th {
-    background-color: #f2f2f2;
-  }
+    .table-container th {
+      background-color: #f2f2f2;
+    }
 
-  /* Centered container */
-  .container {
-    width: 80%;
-    margin: 0 auto;
-  }
-</style>
+    /* Centered container */
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- Colored headline -->
-  <h1 class="headline">Welcome to Our Newsletter!</h1>
+  <h1 class="headline">{{ data.email_form.email_body_title}}</h1>
 
-  <p>google link: <a href="https://www.google.com" target="_blank">google.com</a></p>
-  <p>yahoo link: <a href="https://www.yahoo.com" target="_blank">yahoo.com</a></p>
-<hr>
-</br>
 
-<!-- Container -->
-<div class="container">
-  <!-- <div class="table-container auto"  >
-    <table>
-       <caption style="font-size: medium;">Table 1: Sales Data</caption> 
-      <thead>
-        <tr>
-          <th style="width: 15%;">Column 1</th>
-          <th style="width: 70%;">Column 2</th>
-          <th style="width: 15%;">Column 3</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>google link</td>
-          <td><a href="https://www.google.com" target="_blank">google.com</a></td>
-        </tr>
-        <tr>
-          <td>yahoo link</td>
-          <td><a href="https://www.yahoo.com" target="_blank">yahoo.com</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
+  <!-- Container -->
+  <!-- <div class="container"> -->
 
-  <!-- First Table -->
-   <div class="table-container">
-    <table>
-      <caption style="font-size: medium; text-align: left;">Table 1: Traffic Ticket Information</caption>
-      <thead>
-        <tr>
-          <!-- Ticket_ID,Date_Time,Location,Speed_Limit,Vehicle_Speed,Owner_Name,License_Plate -->
-          <th style="width: 15%;">Ticket_ID</th>
-          <th style="width: 70%;">Date_Time</th>
-          <th style="width: 15%;">Location</th>
-          <th style="width: 15%;">Speed_Limit</th>
-          <th style="width: 15%;">Vehicle_Speed</th>
-          <th style="width: 15%;">Owner_Name</th>
-          <th style="width: 15%;">License_Plate</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for entry in data %}
-        <tr>
+    <!-- Relase Tag -->
+    <div class="table-container auto">
+      <table>
+        <!-- <caption style="font-size: medium;">Table : Release Tag</caption>  -->
+        <thead>
+          <tr>
+            <th>Release Tag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ data.email_form.release_tag }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Relase Notes -->
+    <div class="table-container auto">
+      <table>
+        <!-- <caption style="font-size: medium;">Table : Release Notes</caption>  -->
+        <thead>
+          <tr>
+            <th>Release Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <p> {% for item in data.email_form.release_notes %}
+                <li>{{ item.line }}</li>
+                {% endfor %}
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- First Table -->
+    <div class="table-container">
+      <table class="table table-sm">
+        <caption style="font-size: medium; text-align: left;">Table 1: Traffic Ticket Information</caption>
+        <thead>
+          <tr>
+            <!-- Ticket_ID,Date_Time,Location,Speed_Limit,Vehicle_Speed,Owner_Name,License_Plate -->
+            <th>Ticket_ID</th>
+            <th>Date_Time</th>
+            <th>Location</th>
+            <th>Speed_Limit</th>
+            <th>Vehicle_Speed</th>
+            <th>Owner_Name</th>
+            <th>License_Plate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in data.csv_rows %}
+          <tr>
             <td>{{ entry.Ticket_ID }}</td>
             <td>{{ entry.Date_Time }}</td>
             <td>{{ entry.Location }}</td>
@@ -106,64 +124,10 @@
             <td>{{ entry.Vehicle_Speed }}</td>
             <td>{{ entry.Owner_Name }}</td>
             <td>{{ entry.License_Plate }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-  <!-- Second Table -->
-   <div class="table-container">
-    <table>
-      <caption style="font-size: medium; text-align: left;">Table 1: Sales Data</caption>
-      <thead>
-        <tr>
-          <th style="width: 33%;">Column 1</th>
-          <th style="width: 33%;">Column 2</th>
-          <th style="width: 33%;">Column 3</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Data 1</td>
-          <td>Data 2</td>
-          <td>Data 3</td>
-        </tr>
-        <tr>
-          <td>Data 4</td>
-          <td>Data 5</td>
-          <td>Data 6</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Third Table -->
-  <div class="table-container">
-    <table>
-      <caption style="font-size: medium; text-align: left;">Table 2: Employee Information</caption>
-      <thead>
-        <tr>
-          <th style="width: 33%;">Column A</th>
-          <th style="width: 33%;">Column B</th>
-          <th style="width: 33%;">Column C</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Data A1</td>
-          <td>Data B1</td>
-          <td>Data C1</td>
-        </tr>
-        <tr>
-          <td>Data A2</td>
-          <td>Data B2</td>
-          <td>Data C2</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-</div><!-- End Container -->
-
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 </body>
 </html>
